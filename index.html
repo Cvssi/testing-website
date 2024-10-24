@@ -3,59 +3,199 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Clownpiece Jumpscare</title>
-
-    <!-- Open Graph Meta Tags for Discord Embed -->
-    <meta property="og:title" content="Not a Clownpiece Jumpscare">
-    <meta property="og:description" content="Definitely not a Clownpiece jumpscare">
-    <meta property="og:image" content="raw.jpg">
-    <meta property="og:url" content="https://wwz.app/">
+    <meta property="og:title" content="Touhou Character Gallery">
+    <meta property="og:description" content="Discover popular Touhou characters and listen to their theme songs when hovering over their images!">
+    <meta property="og:image" content="thumbnail.jpg">
+    <meta property="og:url" content="wwz.app">
     <meta property="og:type" content="website">
-
+    
+    <title>Touhou Character Gallery</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
-            background-color: #808080;
+            font-family: 'Arial', sans-serif;
             margin: 0;
             padding: 0;
-            text-align: center;
+            background-color: #f0f0f5;
         }
 
-        header {
-            background-color: #4CAF50;
-            color: white;
-            padding: 15px;
-        }
-
-        section {
-            padding: 20px;
-        }
-
-        footer {
+        .navbar {
+            display: flex;
+            justify-content: space-around;
             background-color: #333;
-            color: white;
             padding: 10px;
-            position: fixed;
-            bottom: 0;
-            width: 100%;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
         }
+
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            padding: 14px 20px;
+            font-size: 18px;
+        }
+
+        .navbar a:hover {
+            background-color: #575757;
+        }
+
+        .container {
+            padding: 20px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+        }
+
+        .character-card {
+            background-color: white;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            width: 300px; /* Increased width */
+            margin: 10px;
+            text-align: center;
+            padding: 20px; /* Increased padding */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .character-card img {
+            width: 2500px; /* Increased image size */
+            height: 2500px; /* Increased image size */
+            border-radius: 50%;
+        }
+
+        .character-card h3 {
+            font-size: 20px; /* Increased font size */
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
     </style>
 </head>
 <body>
 
-    <header>
-        <h1>Clownpiece Jumpscare</h1>
-    </header>
+    <!-- Navbar for character tabs -->
+    <div class="navbar">
+        <a href="#Reimu" onclick="showTab(event, 'Reimu')">Reimu Hakurei</a>
+        <a href="#Marisa" onclick="showTab(event, 'Marisa')">Marisa Kirisame</a>
+        <a href="#Sakuya" onclick="showTab(event, 'Sakuya')">Sakuya Izayoi</a>
+        <a href="#Flandre" onclick="showTab(event, 'Flandre')">Flandre Scarlet</a>
+        <a href="#Remilia" onclick="showTab(event, 'Remilia')">Remilia Scarlet</a>
+        <a href="#Cirno" onclick="showTab(event, 'Cirno')">Cirno</a>
+        <a href="#Yukari" onclick="showTab(event, 'Yukari')">Yukari Yakumo</a>
+    </div>
 
-    <section>
-	<img src="raw.jpg" alt="Gaming">
-        <h2>About This Website</h2>
-        <p>This is a simple website created using HTML and CSS. It's a great starting point for learning web development!</p>
-    </section>
+    <!-- Container for character cards -->
+    <div class="container">
+        <!-- Reimu Tab -->
+        <div id="Reimu" class="tab-content active">
+            <div class="character-card">
+                <img src="reimu.jpg" alt="Reimu Hakurei">
+                <h3>Reimu Hakurei</h3>
+                <p>The shrine maiden of Gensokyo</p>
+                <audio id="reimu-song" src="reimu-theme.mp3" loop></audio>
+            </div>
+        </div>
 
-    <footer>
-        <p>&copy; 2024 My Basic Website</p>
-    </footer>
+        <!-- Marisa Tab -->
+        <div id="Marisa" class="tab-content">
+            <div class="character-card">
+                <img src="marisa.jpg" alt="Marisa Kirisame">
+                <h3>Marisa Kirisame</h3>
+                <p>The ordinary magician</p>
+                <audio id="marisa-song" src="marisa-theme.mp3" loop></audio>
+            </div>
+        </div>
+
+        <!-- Sakuya Tab -->
+        <div id="Sakuya" class="tab-content">
+            <div class="character-card">
+                <img src="sakuya.jpg" alt="Sakuya Izayoi">
+                <h3>Sakuya Izayoi</h3>
+                <p>The time-stopping maid</p>
+                <audio id="sakuya-song" src="sakuya-theme.mp3" loop></audio>
+            </div>
+        </div>
+
+        <!-- Flandre Tab -->
+        <div id="Flandre" class="tab-content">
+            <div class="character-card">
+                <img src="flandre.jpg" alt="Flandre Scarlet">
+                <h3>Flandre Scarlet</h3>
+                <p>The vampire younger sister</p>
+                <audio id="flandre-song" src="flandre-theme.mp3" loop></audio>
+            </div>
+        </div>
+
+        <!-- Remilia Tab -->
+        <div id="Remilia" class="tab-content">
+            <div class="character-card">
+                <img src="remilia.jpg" alt="Remilia Scarlet">
+                <h3>Remilia Scarlet</h3>
+                <p>The scarlet devil</p>
+                <audio id="remilia-song" src="remilia-theme.mp3" loop></audio>
+            </div>
+        </div>
+
+        <!-- Cirno Tab -->
+        <div id="Cirno" class="tab-content">
+            <div class="character-card">
+                <img src="cirno.jpg" alt="Cirno">
+                <h3>Cirno</h3>
+                <p>The strongest ice fairy</p>
+                <audio id="cirno-song" src="cirno-theme.mp3" loop></audio>
+            </div>
+        </div>
+
+        <!-- Yukari Tab -->
+        <div id="Yukari" class="tab-content">
+            <div class="character-card">
+                <img src="yukari.jpg" alt="Yukari Yakumo">
+                <h3>Yukari Yakumo</h3>
+                <p>The gap youkai</p>
+                <audio id="yukari-song" src="yukari-theme.mp3" loop></audio>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript to handle tab switching and song playback -->
+    <script>
+        function showTab(event, tabName) {
+            var i, tabContent, navbarLinks;
+            tabContent = document.getElementsByClassName("tab-content");
+            for (i = 0; i < tabContent.length; i++) {
+                tabContent[i].classList.remove("active");
+                // Pause and reset song when hiding tab
+                const songId = tabContent[i].querySelector('audio').id;
+                stopSong(songId);
+            }
+            document.getElementById(tabName).classList.add("active");
+            // Play song for the active tab
+            playSong(document.getElementById(tabName).querySelector('audio').id);
+
+            navbarLinks = document.querySelectorAll(".navbar a");
+            navbarLinks.forEach(function(link) {
+                link.style.backgroundColor = "";
+            });
+            event.currentTarget.style.backgroundColor = "#575757";
+        }
+
+        function playSong(songId) {
+            const audio = document.getElementById(songId);
+            audio.play();
+        }
+
+        function stopSong(songId) {
+            const audio = document.getElementById(songId);
+            audio.pause();
+            audio.currentTime = 0;
+        }
+    </script>
 
 </body>
 </html>
