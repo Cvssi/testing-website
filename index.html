@@ -5,23 +5,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta property="og:title" content="Touhou Character Gallery">
     <meta property="og:description" content="Discover popular Touhou characters and listen to their theme songs when hovering over their images!">
-    <meta property="og:image" content="thumbnail.jpg">
+    <meta property="og:image" content="thumbnail.png">
     <meta property="og:url" content="wwz.app">
     <meta property="og:type" content="website">
     
     <title>Touhou Character Gallery</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet"> <!-- Adding a Google Font -->
     <style>
         body {
             font-family: 'Arial', sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f0f0f5;
+            background: url('background.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: white; /* Make text white for better visibility on dark background */
         }
 
         .navbar {
             display: flex;
             justify-content: space-around;
-            background-color: #333;
+            background-color: rgba(51, 51, 51, 0.8); /* Semi-transparent background */
             padding: 10px;
             position: sticky;
             top: 0;
@@ -36,7 +39,7 @@
         }
 
         .navbar a:hover {
-            background-color: #575757;
+            background-color: rgba(87, 87, 87, 0.8);
         }
 
         .container {
@@ -46,8 +49,16 @@
             justify-content: space-around;
         }
 
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
         .character-card {
-            background-color: white;
+            background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent background for cards */
             border: 1px solid #ddd;
             border-radius: 8px;
             width: 500px; /* Increased width */
@@ -55,6 +66,7 @@
             text-align: center;
             padding: 20px; /* Increased padding */
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            position: relative; /* Set position to relative for z-index */
         }
 
         .character-card img {
@@ -65,14 +77,28 @@
 
         .character-card h3 {
             font-size: 20px; /* Increased font size */
+            color: black; /* Set name text color to black */
+            font-family: 'Roboto', cursive; /* Apply fancy font to the name */
         }
 
-        .tab-content {
-            display: none;
+        .character-card p {
+            font-size: 16px; /* Set description font size */
+            color: black; /* Set description text color to black */
+            font-family: 'Arial', sans-serif; /* Use a standard font for the description */
         }
 
-        .tab-content.active {
-            display: block;
+        /* Volume and Pause controls */
+        .controls {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+        .controls button, .controls input {
+            margin: 0 10px;
+            padding: 10px;
+            font-size: 16px;
         }
 
     </style>
@@ -88,6 +114,7 @@
         <a href="#Remilia" onclick="showTab(event, 'Remilia')">Remilia Scarlet</a>
         <a href="#Cirno" onclick="showTab(event, 'Cirno')">Cirno</a>
         <a href="#Yukari" onclick="showTab(event, 'Yukari')">Yukari Yakumo</a>
+        <a href="#Patchouli" onclick="showTab(event, 'Patchouli')">Patchouli Knowledge</a>
     </div>
 
     <!-- Container for character cards -->
@@ -161,6 +188,23 @@
                 <audio id="yukari-song" src="yukari-theme.mp3" loop></audio>
             </div>
         </div>
+
+        <!-- Patchouli Tab -->
+        <div id="Patchouli" class="tab-content">
+            <div class="character-card">
+                <img src="patchouli.jpg" alt="Patchouli Knowledge">
+                <h3>Patchouli Knowledge</h3>
+                <p>The librarian of the Scarlet Devil Mansion</p>
+                <audio id="patchouli-song" src="patchouli-theme.mp3" loop></audio>
+            </div>
+        </div>
+    </div>
+
+    <!-- Volume and Pause Controls -->
+    <div class="controls">
+        <button onclick="pauseAll()">Pause All</button>
+        <label for="volume">Volume:</label>
+        <input type="range" id="volume" min="0" max="1" step="0.1" value="0.5" oninput="setVolume(this.value)">
     </div>
 
     <!-- JavaScript to handle tab switching and song playback -->
@@ -194,6 +238,21 @@
             const audio = document.getElementById(songId);
             audio.pause();
             audio.currentTime = 0;
+        }
+
+        function pauseAll() {
+            const audios = document.querySelectorAll('audio');
+            audios.forEach(audio => {
+                audio.pause();
+                audio.currentTime = 0;
+            });
+        }
+
+        function setVolume(volume) {
+            const audios = document.querySelectorAll('audio');
+            audios.forEach(audio => {
+                audio.volume = volume;
+            });
         }
     </script>
 
